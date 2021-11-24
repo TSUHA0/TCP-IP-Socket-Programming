@@ -1,0 +1,5 @@
+/.idea/
+.clion.source.upload.marker
+/cmake-build-debug/
+/lecture01/cmake-build-debug/
+/build/
