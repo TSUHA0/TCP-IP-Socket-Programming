@@ -5,6 +5,6 @@
 #ifndef S_ERROR_H
 #define S_ERROR_H
 
-void error_handling(char *msg);
+void error_handling(const char *msg);
 
 #endif //S_ERROR_H
