@@ -4,4 +4,4 @@ project(socket_program)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-add_subdirectory(lecture04)
+add_subdirectory(lecture05_1)
