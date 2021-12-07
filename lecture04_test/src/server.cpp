@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
         error_handling("listen() error");
     }
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 1; ++i) {
         clnt_len = sizeof(sockaddr_in);
         clnt_sock = accept(serv_sock, (sockaddr *) &clnt_addr, &clnt_len);
         //sprintf(msg, "You are No.%d client.", i);
@@ -45,13 +45,17 @@ int main(int argc, char *argv[]) {
             error_handling("accept() error");
             continue;
         }
-        printf("No.%d client connect. \n", i+1);
-        int str_len;
-        while(str_len = read(clnt_sock, msg, BUFF_LEN) != 0){
-            write(clnt_sock, msg, str_len);
+        printf("No.%d client connect. \n", i + 1);
+
+        ret = write(clnt_sock, msg, BUFF_LEN);
+        if (ret == -1) {
+            error_handling("write() error");
         }
+        while (read(clnt_sock, msg, BUFF_LEN) != 0) {}
         close(clnt_sock);
+
     }
+
     printf("bye! \n");
     close(serv_sock);
     return 0;

@@ -1,3 +1,0 @@
-# 优雅的断开套接字连接
-```c
-#include <sys/socket.h>

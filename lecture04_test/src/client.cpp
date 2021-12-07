@@ -11,6 +11,8 @@
 #include <unistd.h>
 #include <cstdio>
 
+#define BUFF_LEN 30
+
 int main(int argc, char *argv[]) {
     struct sockaddr_in serv_addr;
     int serv_sock;
@@ -22,7 +24,7 @@ int main(int argc, char *argv[]) {
     }
 
     serv_sock = socket(PF_INET, SOCK_STREAM, 0);
-    if ( ret == -1 ) {
+    if (ret == -1) {
         error_handling("socket() error");
     }
 
@@ -30,15 +32,17 @@ int main(int argc, char *argv[]) {
     serv_addr.sin_port = htons(atoi(argv[2]));
     serv_addr.sin_family = AF_INET;
 
-    ret = connect(serv_sock, (sockaddr*)&serv_addr, sizeof(serv_addr));
-    if ( ret == -1 ) {
+    ret = connect(serv_sock, (sockaddr *) &serv_addr, sizeof(serv_addr));
+    if (ret == -1) {
         error_handling("connect() error");
     }
-    char msg[] = "Msg from clnt";
-    ret = write(serv_sock, msg, sizeof(msg));
-    if ( ret == -1 ) {
-        error_handling("write() error");
-    }
+    char msg[BUFF_LEN] = "Msg from clnt";
+
+    int str_len;
+
+    str_len = read(serv_sock, msg, BUFF_LEN);
+    write(serv_sock, msg, str_len);
+
 
     close(serv_sock);
 
