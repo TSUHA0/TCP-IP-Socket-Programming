@@ -13,15 +13,16 @@ int main(int argc, const char *argv[]) {
 
     if (pid == 0) {
         sleep(10);
+        return 24;
     } else {
         int status;
-        while (!waitpid(pid, status, WHOHANG));
-        sleep(3);
-        puts("sleep 3 sec.");
-
+        while (!waitpid(-1, &status, WNOHANG)) {
+            sleep(3);
+            puts("sleep 3 sec.");
+        }
 
         if (WIFEXITED(status)) {
-            printf("Child send %d \n", WEXITSTATUS(status))
+            printf("Child send %d \n", WEXITSTATUS(status));
         }
 
     }
