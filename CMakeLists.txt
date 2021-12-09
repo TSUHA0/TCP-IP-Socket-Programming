@@ -5,7 +5,7 @@ project(socket_program)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 
-set(SUBPROJECT ${PROJECT_SOURCE_DIR}/lecture08)
+set(SUBPROJECT ${PROJECT_SOURCE_DIR}/lecture10_1)
 add_subdirectory(${SUBPROJECT})
 
 
