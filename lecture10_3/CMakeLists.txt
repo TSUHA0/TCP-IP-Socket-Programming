@@ -1,0 +1,2 @@
+project(signal_child)
+
